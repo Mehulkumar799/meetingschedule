@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meeting Scheduler</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    .meeting-form {
+      margin-bottom: 20px;
+    }
+    .meeting-list {
+      margin-top: 20px;
+    }
+    footer {
+      background-color: #f8f9fa;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Meeting Scheduler</h1>
+  </header>
+  <div class="container">
+    <form class="meeting-form">
+      <h2>Schedule a Meeting</h2>
+      <label for="meetingDate">Date:</label>
+      <input type="date" id="meetingDate" required>
+      <br>
+      <label for="meetingTime">Time:</label>
+      <input type="time" id="meetingTime" required>
+      <br>
+      <label for="meetingDescription">Description:</label>
+      <textarea id="meetingDescription" rows="4" required></textarea>
+      <br>
+      <button type="submit">Schedule Meeting</button>
+    </form>
+    <div class="meeting-list">
+      <h2>Scheduled Meetings</h2>
+      <ul id="meetings"></ul>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2024 Meeting Scheduler. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.querySelector('.meeting-form');
+      const meetingsList = document.getElementById('meetings');
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const date = document.getElementById('meetingDate').value;
+        const time = document.getElementById('meetingTime').value;
+        const description = document.getElementById('meetingDescription').value;
+
+        const meetingItem = document.createElement('li');
+        meetingItem.innerHTML = `<strong>${date} - ${time}</strong>: ${description}`;
+        meetingsList.appendChild(meetingItem);
+
+        form.reset();
+      });
+    });
+  </script>
+</body>
+</html>
